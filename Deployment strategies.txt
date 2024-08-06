@@ -1,0 +1,67 @@
+Deployment strategies
+
+
+
+Certainly! Let's explore each deployment strategy in detail, with a focus on example scenarios in the context of a banking client.
+
+### 1. **Recreate (Big Bang) Deployment**
+In a recreate deployment, all instances of the current application version are stopped, and the new version is deployed simultaneously. This approach is straightforward but involves downtime, which can be risky for banking applications requiring high availability.
+
+**Example Scenario**:
+A bank's mobile app is undergoing a major overhaul, including UI changes and new features. The bank decides to take the application offline for a few hours during off-peak hours (e.g., late at night) to perform the update. While the app is down, users are notified, and the new version is deployed once the old one is entirely shut down.
+
+### 2. **Rolling Deployment**
+Rolling deployment updates instances of the application incrementally, ensuring that some instances are always running. This minimizes downtime but can be complex to manage.
+
+**Example Scenario**:
+The bank wants to update the backend API for their internet banking platform. Instead of updating all servers at once, they deploy the new version to one server at a time. Users continue to access the service without interruption, as only a small fraction of requests are handled by the servers being updated.
+
+### 3. **Blue-Green Deployment**
+In blue-green deployment, two identical environments (blue and green) are maintained. The new version is deployed to the inactive environment, and once tested, traffic is switched over.
+
+**Example Scenario**:
+A bank plans to launch a new feature for loan applications. The green environment, identical to the production (blue) environment, is updated with the new feature. After thorough testing, the bank redirects all traffic to the green environment. If issues arise, they can quickly switch back to the blue environment, minimizing customer impact.
+
+### 4. **Canary Deployment**
+Canary deployment gradually rolls out the new version to a small subset of users. This approach allows for early detection of issues.
+
+**Example Scenario**:
+The bank introduces a new fraud detection algorithm. Initially, only 5% of transactions are processed using the new algorithm. As the bank monitors the performance and user feedback, the rollout is extended to 25%, then 50%, and eventually to all users.
+
+### 5. **A/B Testing**
+A/B testing involves running two versions (A and B) simultaneously to compare performance and user engagement.
+
+**Example Scenario**:
+To improve customer engagement, the bank tests two different designs for the credit card offers section on their website. Half of the users see version A, while the other half see version B. The bank collects data on user interactions and determines which version performs better.
+
+### 6. **Shadow Deployment**
+Shadow deployment runs the new version alongside the old one without affecting users. This helps in testing the new version's performance.
+
+**Example Scenario**:
+The bank wants to implement a new core banking system. They run the new system in parallel with the existing one, mirroring real transactions but not affecting actual user accounts. This allows the bank to test the new system's stability and accuracy under real-world conditions.
+
+### 7. **Feature Toggles (Feature Flags)**
+Feature toggles allow features to be turned on or off without deploying new code. This enables gradual feature rollouts and quick rollbacks.
+
+**Example Scenario**:
+The bank is rolling out a new feature for instant money transfers. They deploy the feature behind a feature toggle. Initially, the toggle is off for all users. The bank can gradually turn on the feature for specific users, monitor performance, and address any issues quickly.
+
+### 8. **Dark Launch**
+A dark launch introduces new features or changes in a way that is not visible to users. This helps in monitoring the impact without affecting the user experience.
+
+**Example Scenario**:
+The bank updates its transaction processing engine to improve efficiency. The new engine is deployed, but the results are not shown to users. Instead, the bank monitors the system's performance and collects data to ensure it works as expected before making it fully visible.
+
+### 9. **Red-Black Deployment**
+Red-black deployment is similar to blue-green deployment but involves gradually switching traffic to the new version. This allows for a smoother transition.
+
+**Example Scenario**:
+The bank updates its mobile app with a new version containing critical security updates. The new version (black) is deployed, and 10% of traffic is directed to it. Over time, more traffic is shifted from the old version (red) to the new one until the transition is complete.
+
+### 10. **Immutable Infrastructure**
+Immutable infrastructure involves creating new servers for each deployment, ensuring that no changes are made to running servers.
+
+**Example Scenario**:
+The bank's infrastructure team practices immutable infrastructure. For each deployment, they create new virtual machines with the updated banking software. Once the new servers are ready and tested, they route all traffic to them, then decommission the old servers. This approach ensures consistency and reduces the risk of configuration drift.
+
+These strategies help manage the deployment of updates and new features in a controlled manner, minimizing risks and ensuring a seamless experience for users. In the banking industry, where stability and security are paramount, choosing the right deployment strategy is crucial.
