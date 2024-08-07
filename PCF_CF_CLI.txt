@@ -1,0 +1,248 @@
+The `cf` command-line interface (CLI) is a powerful tool for interacting with Cloud Foundry (CF) environments, including Pivotal Cloud Foundry (PCF). It provides a wide range of commands for managing applications, services, organizations, spaces, users, and more. Below is a comprehensive overview of the `cf` command, detailing the functionality of each primary command.
+
+### Authentication and Targeting
+
+1. **`cf login`**
+   - **Description:** Authenticates a user with a CF environment, setting the target API endpoint, organization, and space.
+   - **Usage:**
+     ```bash
+     cf login -a API_ENDPOINT -u USERNAME -p PASSWORD
+     ```
+   - **Options:** `-a` (API endpoint), `-u` (username), `-p` (password), `-sso` (use single sign-on).
+
+2. **`cf logout`**
+   - **Description:** Logs out the user from the current CF session.
+   - **Usage:** `cf logout`
+
+3. **`cf target`**
+   - **Description:** Sets or displays the current target organization and space.
+   - **Usage:** `cf target -o ORG_NAME -s SPACE_NAME`
+
+4. **`cf api`**
+   - **Description:** Sets or retrieves the API endpoint.
+   - **Usage:** `cf api API_ENDPOINT`
+
+5. **`cf auth`**
+   - **Description:** Authenticates non-interactively using a username and password.
+   - **Usage:** `cf auth USERNAME PASSWORD`
+
+6. **`cf oauth-token`**
+   - **Description:** Displays the OAuth token for the current session.
+   - **Usage:** `cf oauth-token`
+
+### Application Management
+
+1. **`cf push`**
+   - **Description:** Deploys an application to Cloud Foundry.
+   - **Usage:** `cf push APP_NAME -p PATH_TO_APP`
+   - **Options:** `-b` (buildpack), `-m` (memory), `-k` (disk), `-i` (instances), `-n` (hostname), `-d` (domain), `--no-start` (do not start the app after pushing).
+
+2. **`cf delete`**
+   - **Description:** Deletes an application.
+   - **Usage:** `cf delete APP_NAME`
+
+3. **`cf apps`**
+   - **Description:** Lists all applications in the current space.
+   - **Usage:** `cf apps`
+
+4. **`cf start`**
+   - **Description:** Starts an application.
+   - **Usage:** `cf start APP_NAME`
+
+5. **`cf stop`**
+   - **Description:** Stops an application.
+   - **Usage:** `cf stop APP_NAME`
+
+6. **`cf restart`**
+   - **Description:** Restarts an application.
+   - **Usage:** `cf restart APP_NAME`
+
+7. **`cf restage`**
+   - **Description:** Rebuilds an application's droplet from the source code.
+   - **Usage:** `cf restage APP_NAME`
+
+8. **`cf scale`**
+   - **Description:** Scales an application's instances, memory, or disk.
+   - **Usage:** `cf scale APP_NAME -i INSTANCES -m MEMORY -k DISK`
+
+9. **`cf rename`**
+   - **Description:** Renames an application.
+   - **Usage:** `cf rename APP_NAME NEW_NAME`
+
+10. **`cf app`**
+    - **Description:** Displays detailed information about an application.
+    - **Usage:** `cf app APP_NAME`
+
+### Service Management
+
+1. **`cf marketplace`**
+   - **Description:** Lists available services and service plans.
+   - **Usage:** `cf marketplace`
+
+2. **`cf create-service`**
+   - **Description:** Provisions a new service instance.
+   - **Usage:** `cf create-service SERVICE PLAN SERVICE_INSTANCE`
+
+3. **`cf services`**
+   - **Description:** Lists all service instances in the current space.
+   - **Usage:** `cf services`
+
+4. **`cf delete-service`**
+   - **Description:** Deletes a service instance.
+   - **Usage:** `cf delete-service SERVICE_INSTANCE`
+
+5. **`cf bind-service`**
+   - **Description:** Binds a service instance to an application.
+   - **Usage:** `cf bind-service APP_NAME SERVICE_INSTANCE`
+
+6. **`cf unbind-service`**
+   - **Description:** Unbinds a service instance from an application.
+   - **Usage:** `cf unbind-service APP_NAME SERVICE_INSTANCE`
+
+7. **`cf create-user-provided-service`**
+   - **Description:** Creates a user-provided service instance.
+   - **Usage:** `cf create-user-provided-service SERVICE_INSTANCE -p CREDENTIALS`
+
+8. **`cf service`**
+   - **Description:** Shows details of a service instance.
+   - **Usage:** `cf service SERVICE_INSTANCE`
+
+### Environment and Configuration
+
+1. **`cf set-env`**
+   - **Description:** Sets an environment variable for an application.
+   - **Usage:** `cf set-env APP_NAME ENV_VAR_NAME ENV_VAR_VALUE`
+
+2. **`cf unset-env`**
+   - **Description:** Removes an environment variable from an application.
+   - **Usage:** `cf unset-env APP_NAME ENV_VAR_NAME`
+
+3. **`cf env`**
+   - **Description:** Displays environment variables for an application.
+   - **Usage:** `cf env APP_NAME`
+
+4. **`cf create-app-manifest`**
+   - **Description:** Generates a manifest for an application.
+   - **Usage:** `cf create-app-manifest APP_NAME`
+
+5. **`cf create-domain`**
+   - **Description:** Creates a domain in an organization.
+   - **Usage:** `cf create-domain ORG_NAME DOMAIN`
+
+6. **`cf delete-domain`**
+   - **Description:** Deletes a domain.
+   - **Usage:** `cf delete-domain DOMAIN`
+
+7. **`cf map-route`**
+   - **Description:** Maps a route to an application.
+   - **Usage:** `cf map-route APP_NAME DOMAIN --hostname HOSTNAME`
+
+8. **`cf unmap-route`**
+   - **Description:** Unmaps a route from an application.
+   - **Usage:** `cf unmap-route APP_NAME DOMAIN --hostname HOSTNAME`
+
+### Information and Debugging
+
+1. **`cf logs`**
+   - **Description:** Streams or displays logs for an application.
+   - **Usage:** `cf logs APP_NAME --recent`
+
+2. **`cf events`**
+   - **Description:** Shows recent events for an application.
+   - **Usage:** `cf events APP_NAME`
+
+3. **`cf routes`**
+   - **Description:** Lists all routes in the current space.
+   - **Usage:** `cf routes`
+
+4. **`cf route`**
+   - **Description:** Shows details of a specific route.
+   - **Usage:** `cf route ROUTE`
+
+5. **`cf domains`**
+   - **Description:** Lists all domains in the current organization.
+   - **Usage:** `cf domains`
+
+6. **`cf orgs`**
+   - **Description:** Lists all organizations.
+   - **Usage:** `cf orgs`
+
+7. **`cf spaces`**
+   - **Description:** Lists all spaces in the current organization.
+   - **Usage:** `cf spaces`
+
+### Space and Organization Management
+
+1. **`cf create-org`**
+   - **Description:** Creates a new organization.
+   - **Usage:** `cf create-org ORG_NAME`
+
+2. **`cf delete-org`**
+   - **Description:** Deletes an organization.
+   - **Usage:** `cf delete-org ORG_NAME`
+
+3. **`cf create-space`**
+   - **Description:** Creates a new space within an organization.
+   - **Usage:** `cf create-space SPACE_NAME -o ORG_NAME`
+
+4. **`cf delete-space`**
+   - **Description:** Deletes a space.
+   - **Usage:** `cf delete-space SPACE_NAME`
+
+5. **`cf space`**
+   - **Description:** Shows information about a specific space.
+   - **Usage:** `cf space SPACE_NAME`
+
+### User and Role Management
+
+1. **`cf create-user`**
+   - **Description:** Creates a new user.
+   - **Usage:** `cf create-user USERNAME PASSWORD`
+
+2. **`cf delete-user`**
+   - **Description:** Deletes a user.
+   - **Usage:** `cf delete-user USERNAME`
+
+3. **`cf set-org-role`**
+   - **Description:** Assigns an organization role to a user.
+   - **Usage:** `cf set-org-role USERNAME ORG_NAME ROLE`
+
+4. **`cf unset-org-role`**
+   - **Description:** Removes an organization role from a user.
+   - **Usage:** `cf unset-org-role USERNAME ORG_NAME ROLE`
+
+5. **`cf set-space-role`**
+   - **Description:** Assigns a space role to a user.
+   - **Usage:** `cf set-space-role USERNAME ORG_NAME SPACE_NAME ROLE`
+
+6. **`cf unset-space-role`**
+   - **Description:** Removes a space role from a user.
+   - **Usage:** `cf unset-space-role USERNAME ORG_NAME SPACE_NAME ROLE`
+
+### Plugins and Extensions
+
+1. **`cf plugins`**
+   - **Description:** Lists installed plugins.
+   - **Usage:** `cf plugins`
+
+2. **`cf install-plugin`**
+   - **Description:** Installs a plugin.
+   - **Usage:** `cf install-plugin PLUGIN_NAME`
+
+3. **`cf uninstall-plugin`**
+   - **Description:** Uninstalls a plugin.
+   - **Usage:** `cf uninstall-plugin PLUGIN_NAME`
+
+4.
+
+ **`cf enable-feature-flag`**
+   - **Description:** Enables a feature flag.
+   - **Usage:** `cf enable-feature-flag FEATURE_NAME`
+
+5. **`cf disable-feature-flag`**
+   - **Description:** Disables a feature flag.
+   - **Usage:** `cf disable-feature-flag FEATURE_NAME`
+
+### Conclusion
+
+The `cf` CLI is an essential tool for managing Cloud Foundry environments. It offers a wide range of commands that cater to application deployment, service management, environment configuration, and user and role management. Each command provides specific functionalities that streamline the development and operational workflows, making it easier to manage cloud-native applications in a scalable and secure manner.
